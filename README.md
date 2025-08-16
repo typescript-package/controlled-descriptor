@@ -14,19 +14,17 @@
 [![GitHub issues][typescript-package-badge-issues]][typescript-package-issues]
 [![GitHub license][typescript-package-badge-license]][typescript-package-license]
 
-A **lightweight** TypeScript library for controllable property descriptor.
+A **lightweight** TypeScript library for controlled property descriptor.
 
 ## Table of contents
 
 - [Installation](#installation)
 - [Api](#api)
   - Abstract
-    - `PlainWrappedDescriptorBase`
-    - `WrappedDescriptorBase`
-    - `WrappedDescriptorCore`
+    - `ControlledDescriptorBase`
+    - `ControlledDescriptorCore`
   - Class
-    - `PlainWrappedDescriptor`
-    - `WrappedDescriptor`
+    - `ControlledDescriptor`
 - [Contributing](#contributing)
 - [Support](#support)
 - [Code of Conduct](code-of-conduct)
@@ -41,7 +39,7 @@ A **lightweight** TypeScript library for controllable property descriptor.
 ### 1. Install peer dependencies
 
 ```bash
-npm install @typescript-package/wrapped-descriptor --save-peer
+npm install @typescript-package/wrapped-descriptor @typedly/controlled-descriptor --save-peer
 ```
 
 ### 2. Install the package
@@ -55,44 +53,11 @@ npm install @typescript-package/controlled-descriptor --save-peer
 ```typescript
 import {
   // Abstract.
-  PlainWrappedDescriptorBase,
-  WrappedDescriptorBase,
-  WrappedDescriptorCore,
+  ControlledDescriptorBase,
+  ControlledDescriptorCore,
   // Class.
-  PlainWrappedDescriptor,
-  WrappedDescriptor,
+  ControlledDescriptor,
 } from '@typescript-package/controlled-descriptor';
-```
-
-### `WrappedDescriptor`
-
-```typescript
-import { WrappedDescriptor } from '@typescript-package/controlled-descriptor';
-
-export class Person {
-  public age = 27;
-  name = 'Someone';
-  work = 'Gig';
-  _age = 37;
-  _firstName = 'John';
-}
-
-// Initialize `Person`.
-const person = new Person();
-
-// Wrap the `age`.
-const firstWrap = new WrappedDescriptor(person, 'age', {
-  active: true as boolean,
-  onGet: (key, previousValue, value) => (
-    console.debug(`#1. Get value: ${value} for key: ${key}`, previousValue),
-    value
-  ),
-  onSet: (value, previousValue, key) => (
-    console.debug(`#1. Set value: ${value}`, previousValue, key),
-    value
-  ),
-  previousDescriptor: Object.getOwnPropertyDescriptor(person, 'age'),
-});
 ```
 
 ## Contributing
