@@ -25,7 +25,7 @@ export class ControlledDescriptor<
   K extends keyof O = keyof O,
   // Value.
   V extends K extends keyof O ? O[K] : any = K extends keyof O ? O[K] : any,
-  // Active.s
+  // Active.
   A extends boolean = boolean,
   // Enabled.
   N extends boolean = boolean,
@@ -47,7 +47,7 @@ export class ControlledDescriptor<
   }
 
   /**
-   * Creates an instance of `ControllableDescriptor`.
+   * Creates an instance of `ControlledDescriptor`.
    * @constructor
    * @param {O} object 
    * @param {K} key 
