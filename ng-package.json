@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/controllable-descriptor",
+  "dest": "../../dist/controlled-descriptor",
   "lib": {
     "entryFile": "src/public-api.ts"
   },
