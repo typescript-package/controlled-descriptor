@@ -9,7 +9,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "peerDependencies": {
-    "@typedly/controlled-descriptor": "^0.0.1",
+    "@typescript-package/controller": "^0.0.1",
     "@typescript-package/wrapped-descriptor": "^0.0.1"
   },
   "scripts": {
