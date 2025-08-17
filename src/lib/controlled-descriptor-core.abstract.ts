@@ -6,18 +6,18 @@ import { WrappedPropertyDescriptorController } from "@typedly/controller";
 // Type.
 import { GetterCallback, SetterCallback } from '@typedly/callback';
 /**
- * @description
+ * @description The core abstraction class for controlled descriptors.
  * @export
  * @abstract
  * @class ControlledDescriptorCore
- * @template [O=any] 
- * @template {keyof O} [K=keyof O] 
- * @template {K extends keyof O ? O[K] : any} [V=K extends keyof O ? O[K] : any] 
- * @template {boolean} [A=boolean] 
- * @template {boolean} [N=boolean] 
- * @template {boolean} [C=boolean] 
- * @template {boolean} [E=boolean] 
- * @template {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>] 
+ * @template [O=any] The type of the object.
+ * @template {keyof O} [K=keyof O] The type of the key.
+ * @template {K extends keyof O ? O[K] : any} [V=K extends keyof O ? O[K] : any] The type of the value.
+ * @template {boolean} [A=boolean] The type of the active.
+ * @template {boolean} [N=boolean] The type of the enabled.
+ * @template {boolean} [C=boolean] The type of the configurable.
+ * @template {boolean} [E=boolean] The type of the enumerable.
+ * @template {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>] The type of the previous descriptor.
  * @extends {WrappedDescriptorCore<O, K, V, A, N, C, E, D>}
  * @implements {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D>}
  */
