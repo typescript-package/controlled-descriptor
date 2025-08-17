@@ -5,18 +5,18 @@ import { ControlledPropertyDescriptor } from '@typedly/controlled-descriptor';
 import { WrappedPropertyDescriptor } from '@typedly/descriptor';
 import { WrappedPropertyDescriptorController } from '@typedly/controller';
 /**
- * @description
+ * @description The base abstraction class for controlled descriptors.
  * @export
  * @abstract
  * @class ControlledDescriptorBase
- * @template [O=any] 
- * @template {keyof O} [K=keyof O] 
- * @template {K extends keyof O ? O[K] : any} [V=K extends keyof O ? O[K] : any] 
- * @template {boolean} [A=boolean] 
- * @template {boolean} [N=boolean] 
- * @template {boolean} [C=boolean] 
- * @template {boolean} [E=boolean] 
- * @template {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>] 
+ * @template [O=any] The type of object.
+ * @template {keyof O} [K=keyof O] The type of the key.
+ * @template {K extends keyof O ? O[K] : any} [V=K extends keyof O ? O[K] : any] The type of the value.
+ * @template {boolean} [A=boolean] The type of active.
+ * @template {boolean} [N=boolean] The type of enabled.
+ * @template {boolean} [C=boolean] The type of configurable.
+ * @template {boolean} [E=boolean] The type of enumerable.
+ * @template {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>] The type of previous and `get`, `set` descriptor.
  * @extends {ControlledDescriptorCore<O, K, V, A, N, C, E, D>}
  */
 export abstract class ControlledDescriptorBase<
@@ -134,7 +134,7 @@ export abstract class ControlledDescriptorBase<
    *       object: O,
    *       key: K,
    *       attributes: Partial<WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>>,
-   *     ) => WrappedPropertyDescriptorController<O, K, V, A, N, C, E, D>} controller The controller 
+   *     ) => WrappedPropertyDescriptorController<O, K, V, A, N, C, E, D>} controller The controller to control behavior.
    */
   constructor(
     object: O,

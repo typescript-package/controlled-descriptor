@@ -127,5 +127,4 @@ export abstract class ControlledDescriptorCore<
    * @type {(this: O, value: V, descriptor?: D) => void}
    */
   abstract override get set(): (this: O, value: V, descriptor?: D) => void;
-
 }
