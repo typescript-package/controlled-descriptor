@@ -6,7 +6,34 @@ const person = new Person();
 
 const key = 'age';
 
-let controlledDescriptor = new ControlledDescriptor(person, key);
+let controlledDescriptor = new ControlledDescriptor(person, key, {
+  onGet(key, previousValue, value) {
+    console.log(`Getting ${key}: ${previousValue} => ${value}`);
+    return value;
+  },
+  onSet(value, previousValue, key) {
+    console.log(`Setting ${key}: ${previousValue} => ${value}`);
+    return value;
+  },
+  previousDescriptor: Object.getOwnPropertyDescriptor(person, key)
+});
+
+let secondControlledDescriptor = new ControlledDescriptor(person, key, {
+  onGet(key, previousValue, value) {
+    console.log(`Second Getting ${key}: ${previousValue} => ${value}`);
+    return value;
+  },
+  onSet(value, previousValue, key) {
+    console.log(`Second Setting ${key}: ${previousValue} => ${value}`);
+    return value;
+  },
+  previousDescriptor: controlledDescriptor
+});
+
+Object.defineProperty(person, 'age', controlledDescriptor);
+
+person.age = 30;
+person.age;
 
 console.group(`Controlled Descriptor for `, controlledDescriptor.key);
 
@@ -42,7 +69,7 @@ describe('ControlledDescriptor', () => {
   beforeEach(() => {
     person = new Person();
     controlledDescriptor = new ControlledDescriptor(person, key);
-    onControlledDescriptor = new ControlledDescriptor(person, key, );
+    onControlledDescriptor = new ControlledDescriptor(person, key);
   });
 
   it('should be active', () => {
