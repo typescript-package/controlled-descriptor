@@ -17,7 +17,7 @@ import { GetterCallback, SetterCallback } from '@typedly/callback';
  * @template {boolean} [N=boolean] The type of the enabled.
  * @template {boolean} [C=boolean] The type of the configurable.
  * @template {boolean} [E=boolean] The type of the enumerable.
- * @template {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>] The type of the previous descriptor.
+ * @template {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D> | PropertyDescriptor} [D=ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>] The type of the previous descriptor.
  * @extends {WrappedDescriptorCore<O, K, V, A, N, C, E, D>}
  * @implements {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D>}
  */
@@ -37,7 +37,7 @@ export abstract class ControlledDescriptorCore<
   // Enumerable.
   E extends boolean = boolean,
   // The type of the previous descriptor.
-  D extends ControlledPropertyDescriptor<O, K, V, A, N, C, E, D> = ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>,
+  D extends ControlledPropertyDescriptor<O, K, V, A, N, C, E, D> | PropertyDescriptor = ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>,
 > extends WrappedDescriptorCore<O, K, V, A, N, C, E, D>
   implements ControlledPropertyDescriptor<O, K, V, A, N, C, E, D> {
   /**

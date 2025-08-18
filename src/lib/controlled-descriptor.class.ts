@@ -17,7 +17,7 @@ import { WrappedPropertyDescriptorController } from '@typedly/controller';
  * @template {boolean} [N=boolean] The type of the enabled.
  * @template {boolean} [C=boolean] The type of the configurable.
  * @template {boolean} [E=boolean] The type of the enumerable.
- * @template {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>] The type of previous and `get`, `set` descriptor.
+ * @template {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D> | PropertyDescriptor} [D=ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>] The type of previous and `get`, `set` descriptor.
  * @extends {ControlledDescriptorBase<O, K, V, A, N, C, E, D>}
  */
 export class ControlledDescriptor<
@@ -36,7 +36,7 @@ export class ControlledDescriptor<
   // Enumerable.
   E extends boolean = boolean,
   // Descriptor.
-  D extends ControlledPropertyDescriptor<O, K, V, A, N, C, E, D> = ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>,
+  D extends ControlledPropertyDescriptor<O, K, V, A, N, C, E, D> | PropertyDescriptor = ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>,
 > extends ControlledDescriptorBase<O, K, V, A, N, C, E, D> {
   /**
    * @description The string tag for the descriptor.
@@ -68,7 +68,7 @@ export class ControlledDescriptor<
       object: O,
       key: K,
       descriptor: Partial<WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>>,
-    ) => WrappedPropertyDescriptorController<O, K, V, A, N, C, E, D> = ControlledDescriptorController
+    ) => WrappedPropertyDescriptorController<O, K, V, A, N, C, E, D> = ControlledDescriptorController<O, K, V, A, N, C, E, D>
   ) {
     super(object, key, attributes, controller);
   }

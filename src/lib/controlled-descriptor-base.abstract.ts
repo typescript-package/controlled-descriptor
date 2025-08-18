@@ -16,7 +16,7 @@ import { WrappedPropertyDescriptorController } from '@typedly/controller';
  * @template {boolean} [N=boolean] The type of enabled.
  * @template {boolean} [C=boolean] The type of configurable.
  * @template {boolean} [E=boolean] The type of enumerable.
- * @template {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>] The type of previous and `get`, `set` descriptor.
+ * @template {ControlledPropertyDescriptor<O, K, V, A, N, C, E, D> | PropertyDescriptor} [D=ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>] The type of previous and `get`, `set` descriptor.
  * @extends {ControlledDescriptorCore<O, K, V, A, N, C, E, D>}
  */
 export abstract class ControlledDescriptorBase<
@@ -35,7 +35,7 @@ export abstract class ControlledDescriptorBase<
   // Enumerable.
   E extends boolean = boolean,
   // The type of the previous descriptor.
-  D extends ControlledPropertyDescriptor<O, K, V, A, N, C, E, D> = ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>,
+  D extends ControlledPropertyDescriptor<O, K, V, A, N, C, E, D> | PropertyDescriptor = ControlledPropertyDescriptor<O, K, V, A, N, C, E, any>,
 > extends ControlledDescriptorCore<O, K, V, A, N, C, E, D> {
   /**
    * @inheritdoc
@@ -86,6 +86,9 @@ export abstract class ControlledDescriptorBase<
     return this.controller.onSet;
   }
 
+  /**
+   * @inheritdoc
+   */
   public get previous() {
     return this.controller.previous;
   }
