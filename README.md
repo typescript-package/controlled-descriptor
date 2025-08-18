@@ -39,7 +39,9 @@ A **lightweight** TypeScript library for controlled property descriptor.
 ### 1. Install peer dependencies
 
 ```bash
-npm install @typescript-package/wrapped-descriptor @typedly/controlled-descriptor --save-peer
+npm install
+  @typescript-package/wrapped-descriptor
+  @typedly/controlled-descriptor --save-peer
 ```
 
 ### 2. Install the package
@@ -58,6 +60,39 @@ import {
   // Class.
   ControlledDescriptor,
 } from '@typescript-package/controlled-descriptor';
+```
+
+### `ControlledDescriptor`
+
+```typescript
+import { ControlledDescriptor } from '@typescript-package/controlled-descriptor';
+
+class Person {
+  public age = 27;
+  name = 'Someone';
+  work = 'Gig';
+  _age = 37;
+  _firstName = 'John';
+}
+
+const person = new Person();
+
+let controlledDescriptor = new ControlledDescriptor(person, 'age', {
+    onGet(key, previousValue, value) {
+      console.log(`Getting ${key}: ${previousValue} => ${value}`);
+      return value;
+    },
+    onSet(value, previousValue, key) {
+      console.log(`Setting ${key}: ${previousValue} => ${value}`);
+      return value;
+    }
+});
+
+Object.defineProperty(person, 'age', controlledDescriptor);
+
+person.age = 30; // Setting age: 37 => 30
+person.age; // Getting age: undefined => 30
+
 ```
 
 ## Contributing
